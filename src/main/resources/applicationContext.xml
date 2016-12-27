@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/cache
+           http://www.springframework.org/schema/cache/spring-cache.xsd
+           http://www.springframework.org/schema/task
+           http://www.springframework.org/schema/task/spring-task.xsd">
+
+
+    <!-- 1.加载数据库配置的属性文件 -->
+    <context:property-placeholder location="classpath:config.properties"/>
+
+    <!-- 2.自动组件扫描 -->
+    <context:component-scan base-package="com.gpdata.wanyou">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <aop:aspectj-autoproxy/>
+
+    <bean class="com.gpdata.wanyou.utils.ApplicationContextUtil" factory-method="getInstance"/>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="utf-8"
+          p:maxUploadSize="104857600"
+          p:maxInMemorySize="4096"/>
+
+    <!-- RedisCacheFactory 返回的　redisCache  -->
+    <bean id="redisCache" class="com.gpdata.wanyou.base.cache.CacheFactory"
+          factory-method="getInstances"/>
+
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+
+        <!---->
+        <property name="driverClass" value="${project.jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${project.jdbc.url}"/>
+        <property name="user" value="${project.jdbc.username}"/>
+        <property name="password" value="${project.jdbc.password}"/>
+
+
+        <property name="initialPoolSize" value="1"/>
+        <property name="acquireIncrement" value="10"/>
+        <property name="minPoolSize" value="50"/>
+        <property name="maxPoolSize" value="200"/>
+        <property name="maxIdleTime" value="600"/>
+        <property name="maxStatements" value="8"/>
+        <property name="maxStatementsPerConnection" value="5"/>
+    </bean>
+
+    <!-- Hibernate SessionFactory -->
+    <!--
+    <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+        <property name="dataSource" ref="dataSource"/>
+
+
+        <property name="hibernateProperties">
+            <props>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+                <prop key="hibernate.connection.driver_class">${project.jdbc.driverClassName}</prop>
+                <prop key="hibernate.connection.url">${project.jdbc.url}</prop>
+                <prop key="hibernate.connection.username">${project.jdbc.username}</prop>
+                <prop key="hibernate.connection.password">${project.jdbc.password}</prop>
+
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+
+                <prop key="hibernate.connection.autoReconnect">true</prop>
+                <prop key="hibernate.connection.failOverReadOnly">false</prop>
+                <prop key="hibernate.connection.useUnicode">true</prop>
+                <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+
+                <prop key="hibernate.connection.provider_class">
+                    org.hibernate.c3p0.internal.C3P0ConnectionProvider
+                </prop>
+
+                <prop key="hibernate.transaction.coordinator_class">
+                    jdbc
+                </prop>
+                <prop key="hibernate.current_session_context_class">
+                    org.springframework.orm.hibernate4.SpringSessionContext
+                </prop>
+                <prop key="hibernate.transaction.factory_class">
+                    org.hibernate.engine.transaction.internal.jdbc.JdbcTransactionFactory
+                </prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.provider_configuration_file_resource_path">
+                    ehcache.xml
+                </prop>
+                <prop key="hibernate.cache.use_query_cache">false</prop>
+                <prop key="hibernate.cache.region.factory_class">
+                    org.hibernate.cache.SingletonEhCacheRegionFactory
+                </prop>
+                <prop key="hibernate.cache.use_structured_entries">false</prop>
+                <prop key="hibernate.generate_statistics">false</prop>
+                <prop key="hibernate.use_sql_comments">false</prop>
+                <prop key="hibernate.jdbc.batch_size">30</prop>
+                <prop key="hibernate.connection.autocommit">false</prop>
+
+                <prop key="hibernate.bytecode.provider">javassist</prop>
+                <prop key="hibernate.max_fetch_depth">3</prop>
+            </props>
+        </property>
+
+        <property name="packagesToScan">
+            <list>
+                <value>com.gpdata.wanyou.ds.entity</value>
+                <!--<value>com.gpdata.wanyou.ft.entity</value>-->
+                <!--<value>com.gpdata.wanyou.md.entity</value>-->
+                <value>com.gpdata.wanyou.sp.entity</value>
+                <!--<value>com.gpdata.wanyou.sv.entity</value>-->
+                <value>com.gpdata.wanyou.system.entity</value>
+                <value>com.gpdata.wanyou.tk.entity</value>
+                <value>com.gpdata.wanyou.dq.entity</value>
+                <value>com.gpdata.wanyou.user.entity</value>
+                <value>com.gpdata.wanyou.subscriber.entity</value>
+                <value>com.gpdata.wanyou.news.entity</value>
+                <value>com.gpdata.wanyou.admin.entity</value>
+                <value>com.gpdata.wanyou.policy.entity</value>
+                <value>com.gpdata.wanyou.ansj.entity</value>
+                <value>com.gpdata.wanyou.head.entity</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置事务 -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <constructor-arg ref="sessionFactory"/>
+        <property name="nestedTransactionAllowed" value="true"/>
+        <!--<property name="dataSource" ref="dataSource" />  -->
+    </bean>
+
+    <!-- REQUIRED SUPPORTS -->
+    <!-- -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="merge*" propagation="REQUIRED"/>
+            <tx:method name="generate*" propagation="REQUIRED"/>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+
+    <aop:config>
+        <aop:pointcut id="servicePointcut"
+                      expression="execution(* com.gpdata.wanyou..service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"/>
+    </aop:config>
+
+    <!-- 保存上传的文件的工具 -->
+    <bean id="flexibleFileUtil" class="${project.class.flexibleFileUtil}"/>
+    <!-- 获取当前用户 -->
+    <bean id="accessUserFilter" class="com.gpdata.wanyou.base.filter.AccessUserFilter">
+
+    </bean>
+
+    <!-- 数据源工具类工厂 -->
+    <bean class="com.gpdata.wanyou.ds.util.resource.factory.DataResourceFactory"
+          factory-method="getFactory"/>
+
+    <!-- 导入权限管理的配置 -->
+    <import resource="applicationContext-shiro.xml"/>
+
+    <!-- ansj初始化  -->
+    <bean id="ansjUtil" class="com.gpdata.wanyou.ansj.util.AnsjUtil"
+          factory-method="getInstance">
+    </bean>
+    <!-- 定时任务  "0 0 3 * * ?" 每天上午3点触发 ，进行表结构更新 秒（0~59）
+        分钟（0~59）
+        小时（0~23）
+        天（月）（0~31，但是你需要考虑你月的天数）
+        月（0~11）
+        天（星期）（1~7 1=SUN 或 SUN，MON，TUE，WED，THU，FRI，SAT）
+        年份（1970－2099）
+        -->
+    <task:scheduled-tasks>
+        <task:scheduled ref="subWithPolicyServiceImpl" method="autoFtRetrieval" cron="0 0 3 * * ?"/>
+    </task:scheduled-tasks>
+    <!-- 定时任务 -->
+    <!-- 每2个小时，进行数据更新
+    <task:scheduled-tasks>
+        <task:scheduled ref="dataSourceTableTask" method="getData" cron="0 0 */2 * * ?"/>
+    </task:scheduled-tasks>
+-->
+    <!-- 定时任务 -->
+    <!-- 每1个小时，进行表结构更新
+    <task:scheduled-tasks>
+        <task:scheduled ref="dataSourceTableTask" method="updateAllDataResource" cron="0 0 */1 * * ?"/>
+    </task:scheduled-tasks>
+    -->
+</beans>

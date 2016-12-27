@@ -1,0 +1,1090 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gpdata.policy</groupId>
+    <artifactId>policy_t</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>gp-policy Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.jdk.version>1.8</project.jdk.version>
+        <scala.version>2.11</scala.version>
+        <project.spring.version>4.3.2.RELEASE</project.spring.version>
+        <spark.version>2.0.2</spark.version>
+        <hadoop.version>2.7.1</hadoop.version>
+        <druid-version>1.0.18</druid-version>
+        <lucene.version>4.0.0</lucene.version>
+        <project.shiro.version>1.3.2</project.shiro.version>
+    </properties>
+
+    <dependencies>
+        <!-- 允许 js 跨域访问 (使用 jetty) -->
+        <!-- http://mvnrepository.com/artifact/org.eclipse.jetty/jetty-servlets -->
+        <!--
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+            <version>9.3.9.v20160517</version>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+            <version>9.3.9.v20160517</version>
+        </dependency>
+
+        <!-- 允许 js 跨域访问 (使用 tomcat) -->
+        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>8.0.38</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--presto-->
+        <dependency>
+            <groupId>com.facebook.presto</groupId>
+            <artifactId>presto-jdbc</artifactId>
+            <version>0.152.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+
+        <!-- org.springframework -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${project.spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${project.spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${project.spring.version}</version>
+        </dependency>
+
+        <!-- for test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${project.spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- spring-jackson -->
+        <!--
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+        -->
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.4</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.11.Final</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>4.3.11.Final</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>4.3.11.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.25</version>
+        </dependency>
+
+        <!-- apache-shiro -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-aspectj</artifactId>
+            <version>${project.shiro.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-cas</artifactId>
+            <version>${project.shiro.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${project.shiro.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${project.shiro.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${project.shiro.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${project.shiro.version}</version>
+        </dependency>
+
+        <!-- apache-commons -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+        <!-- zhifubao -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.4.2</version>
+        </dependency>
+
+        <!-- httpcomponents:httpclient:4.5.2 -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mks.api</groupId>
+            <artifactId>mksapi-jar</artifactId>
+            <version>4.10.9049</version>
+        </dependency>
+
+
+        <!-- alibaba:fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.10</version>
+        </dependency>
+        <!-- 阿里大鱼短信 -->
+        <dependency>
+            <groupId>com.taobao</groupId>
+            <artifactId>taobao-sdk-sms</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/taobao-sdk-sms.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.taobao</groupId>
+            <artifactId>taobao-sdk-sms-source</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/taobao-sdk-sms-source.jar</systemPath>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.23</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.aliyun.oss/aliyun-sdk-oss -->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+
+        <!-- ehcache 缓存 -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.8.1</version>
+        </dependency>
+
+        <!-- log -->
+        <!-- -->
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <!--
+        -->
+
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+        <!-- for test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20140107</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.10-FINAL</version>
+            <type>jar</type>
+        </dependency>
+        <!-- 为POI支持Office Open XML-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.10-FINAL</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>ooxml-schemas</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <!-- 支持Word文档的操作 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>3.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>2.6.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>stax</groupId>
+            <artifactId>stax-api</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/jaxen/jaxen -->
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.1.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.23</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>2.3.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-codecs</artifactId>
+            <version>4.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>xom</groupId>
+            <artifactId>xom</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${project.spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${project.spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${project.spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
+            <version>2.1.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.orbit</groupId>
+                    <artifactId>javax.servlet</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.aggregate</groupId>
+                    <artifactId>jetty-all</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-api</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-core</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-web</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-1.2-api</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>2.7.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-xc</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-core-asl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-jaxrs</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>2.7.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-core-asl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>2.7.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-core-asl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-xc</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-jaxrs</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--
+        -->
+        <dependency>
+            <groupId>jdk.tools</groupId>
+            <artifactId>jdk.tools</artifactId>
+            <version>1.8</version>
+            <scope>system</scope>
+            <systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+        </dependency>
+
+        <!-- -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>1.2.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>1.2.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>servlet-api-2.5</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jsp-api-2.1</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jsp-2.1</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-core-asl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-jaxrs</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-hbase-handler</artifactId>
+            <version>2.1.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-api</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-core</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-core</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-1.2-api</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.aggregate</groupId>
+                    <artifactId>jetty-all</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>org.apache.hive</groupId>
+                    <artifactId>hive-exec</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.10</artifactId>
+            <version>0.10.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
+        <dependency>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <!-- javamail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+        <!--ansj分词 -->
+        <dependency>
+            <groupId>org.ansj</groupId>
+            <artifactId>ansj_seg</artifactId>
+            <version>5.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${scala.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${scala.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_${scala.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_${scala.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-mllib_${scala.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <finalName>policy_t</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.19.1</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <forkMode>once</forkMode>
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${project.jdk.version}</source>
+                    <target>${project.jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+    </build>
+
+
+    <profiles>
+        <profile>
+            <id>development</id>
+            <properties>
+                <!-- 数据库配置 -->
+                <project.jdbc.driverClassName>com.mysql.jdbc.Driver</project.jdbc.driverClassName>
+                <project.jdbc.url>jdbc:mysql://123.57.57.17:3306/policy</project.jdbc.url>
+                <project.jdbc.username>gaosong</project.jdbc.username>
+                <project.jdbc.password>gpl123</project.jdbc.password>
+                <project.jdbc.hostandport>123.57.57.17:3306</project.jdbc.hostandport>
+
+
+                <!-- HBase配置 -->
+                <hbase.zookeeper.property.clientPort>2181</hbase.zookeeper.property.clientPort>
+                <hbase.zookeeper.quorum>192.168.1.222</hbase.zookeeper.quorum>
+                <hbase.master>192.168.1.222:16000</hbase.master>
+
+                <!--文件上传和资源引用配置 -->
+                <project.upload.filepath>D:/dtsupload/</project.upload.filepath>
+                <project.static_resource_file>/policy/fileser?f=</project.static_resource_file>
+                <!--oss文件配置 -->
+                <porject.ali.oss.endpoint>oss-cn-shanghai.aliyuncs.com</porject.ali.oss.endpoint>
+                <project.ali.oss.AccessKeyId>AlVPBCfTnSN1pppp</project.ali.oss.AccessKeyId>
+                <project.ali.oss.AccessKeySecret>46pTH6oFXTk395sTn2i0HCW1GUVhc7</project.ali.oss.AccessKeySecret>
+                <project.ali.oss.res.bucket>gp-trade-res</project.ali.oss.res.bucket>
+                <project.ali.oss.pub.bucket>gp-trade-pub</project.ali.oss.pub.bucket>
+                <project.fs.pub.loc.prefix>D:/dtsupload/</project.fs.pub.loc.prefix>
+                <project.fs.res.loc.prefix>D:/dtsupload/</project.fs.res.loc.prefix>
+                <project.class.flexibleFileUtil>com.gpdata.wanyou.base.flexible.impl.FlexibleFileUtilFSImpl
+                </project.class.flexibleFileUtil>
+
+                <project.log.save.oss>false</project.log.save.oss>
+
+                <project.redis.no.cluster>true</project.redis.no.cluster>
+                <project.redis.write.pool>redis://192.168.1.222:6379</project.redis.write.pool>
+                <!--<project.redis.write.pool>redis://10.172.165.249:6379</project.redis.write.pool>-->
+                <project.redis.write.pool.maxIdle>10</project.redis.write.pool.maxIdle>
+                <project.redis.pool.testOnBorrow>true</project.redis.pool.testOnBorrow>
+
+                <!--azkaban -->
+                <project.azkaban.url>http://192.168.1.222:9001/</project.azkaban.url>
+                <project.azkaban.user>azkaban</project.azkaban.user>
+                <project.azkaban.password>azkaban</project.azkaban.password>
+                <project.azkaban.GDI_Project></project.azkaban.GDI_Project>
+                <project.azkaban.GDI_Workflow></project.azkaban.GDI_Workflow>
+                <project.azkaban.keystore.password>azkaban</project.azkaban.keystore.password>
+                <project.azkaban.keystore>${project.basedir}/src/main/webapp/WEB-INF/keystore/tomcat.keystore
+                </project.azkaban.keystore>
+                <project.azkaban.truststore>${project.basedir}/src/main/webapp/WEB-INF/keystore/tomcat.keystore
+                </project.azkaban.truststore>
+
+                <!-- ES路径 -->
+                <ES.url>http://192.168.1.222:9200</ES.url>
+                <ES.cluster>elasticsearch</ES.cluster>
+
+                <!-- HDFS配置 -->
+                <HDFS.url>hdfs://192.168.1.222:9000</HDFS.url>
+                <HDFS.baseurl>hdfs://192.168.1.222</HDFS.baseurl>
+                <!-- HDFS用户 -->
+                <HDFS.HADOOP_USER_NAME>hdfs</HDFS.HADOOP_USER_NAME>
+                <!-- 原始数据保存的HDFS路径 -->
+                <HDFS.orginal>/orginal</HDFS.orginal>
+                <!-- 质量正确的数据保存的HDFS集群路径 -->
+                <HDFS.dealed>/dealed</HDFS.dealed>
+                <!-- 质量错误的数据保存的HDFS集群路径 -->
+                <HDFS.error>/error</HDFS.error>
+
+                <!-- HIVE配置 -->
+                <HIVE.ThriftServer>jdbc:hive2://192.168.1.222:10000</HIVE.ThriftServer>
+
+                <!-- PRESTO配置 -->
+                <PRESTO.JDBC>jdbc:presto://192.168.1.222:9090</PRESTO.JDBC>
+
+                <!-- ES与DB同步配置 -->
+                <es.addr>192.168.1.222:9200</es.addr>
+                <data.super.dir>/work/datadir/</data.super.dir>
+                <stat.addr>192.168.1.222:12805</stat.addr>
+                <run.path>/work/go-mysql-elasticsearch/bin/go-mysql-elasticsearch/</run.path>
+                <river.toml.path>/work/go-mysql-elasticsearch/etc/</river.toml.path>
+
+                <!-- Kfaka配置 -->
+                <bootstrap.servers>192.168.1.222:9092</bootstrap.servers>
+                <zookeeper.connect>192.168.1.222:2181</zookeeper.connect>
+                <orginal.topic>wanyou.orginal.topic</orginal.topic>
+                <orginal.group.id>wanyou.orginal.group</orginal.group.id>
+                <dealed.topic>wanyou.dealed.topic</dealed.topic>
+                <dealed.group.id>wanyou.dealed.group</dealed.group.id>
+
+                <project.user.md5.salt>Stay-hungry</project.user.md5.salt>
+                <!-- 设置登录：authc -->
+                <!--<project.shiro.default.authc>anon</project.shiro.default.authc>-->
+                <project.shiro.default.authc>authc</project.shiro.default.authc>
+
+                <!--nutch 配置文件 -->
+                <project.nutch_config_path>/nutch/{0}/config/</project.nutch_config_path>
+                <project.nutch_url_path>/nutch/{0}/urls/</project.nutch_url_path>
+                <!--kettle 基本配置 -->
+                <project.kettle.basePath>/work/data-integration/</project.kettle.basePath>
+                <project.kettle.level>Basic</project.kettle.level>
+                <project.kettle.mainjob>master</project.kettle.mainjob>
+                <project.kettle.kitchen>{0}kitchen.sh -level={1} -file={2}.kjb >> /work/kettle/log/kettle_kitchen.log
+                </project.kettle.kitchen>
+                <project.kettle.pan>{0}pan.sh -level={1} -file={2}.ktr >> /work/kettle/log/kettle_pan.log
+                </project.kettle.pan>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>cluster</id>
+            <properties>
+                <!-- 数据库配置 -->
+                <project.jdbc.driverClassName>com.mysql.jdbc.Driver</project.jdbc.driverClassName>
+                <project.jdbc.url>jdbc:mysql://123.57.57.17:3306/policy</project.jdbc.url>
+                <project.jdbc.username>gaosong</project.jdbc.username>
+                <project.jdbc.password>gpl123</project.jdbc.password>
+                <project.jdbc.hostandport>123.57.57.17:3306</project.jdbc.hostandport>
+
+                <!-- HBase配置 -->
+                <hbase.zookeeper.property.clientPort>2181</hbase.zookeeper.property.clientPort>
+                <hbase.zookeeper.quorum>gpldata222</hbase.zookeeper.quorum>
+                <hbase.master>gpldata222:16000</hbase.master>
+
+                <!-- 上传配置文件路径 -->
+                <project.upload.filepath>/var/wwwroot/nginx_html/static-res-files/</project.upload.filepath>
+                <project.static_resource_file>//static-res-files/</project.static_resource_file>
+                <!-- 线上正式 TODO
+                <project.upload.filepath>/var/wwwroot/nginx_html/static-res-files/</project.upload.filepath>
+                 <project.static_resource_file>http://img.ccbde.cn/</project.static_resource_file>
+                 -->
+                <!--oss文件配置 -->
+                <porject.ali.oss.endpoint>oss-cn-shanghai.aliyuncs.com</porject.ali.oss.endpoint>
+                <project.ali.oss.AccessKeyId>AlVPBCfTnSN1pppp</project.ali.oss.AccessKeyId>
+                <project.ali.oss.AccessKeySecret>46pTH6oFXTk395sTn2i0HCW1GUVhc7</project.ali.oss.AccessKeySecret>
+                <project.ali.oss.res.bucket>gp-trade-res</project.ali.oss.res.bucket>
+                <project.ali.oss.pub.bucket>gp-trade-pub</project.ali.oss.pub.bucket>
+
+                <project.fs.pub.loc.prefix>/home/policy/work/upload/</project.fs.pub.loc.prefix>
+                <project.fs.res.loc.prefix>/home/policy/work/upload/</project.fs.res.loc.prefix>
+
+                <project.class.flexibleFileUtil>com.gpdata.wanyou.base.flexible.impl.FlexibleFileUtilFSImpl
+                </project.class.flexibleFileUtil>
+
+                <project.log.save.oss>false</project.log.save.oss>
+
+                <project.redis.no.cluster>true</project.redis.no.cluster>
+                <project.redis.write.pool>redis://gpldata222:6379</project.redis.write.pool>
+                <!--<project.redis.write.pool>redis://10.172.165.249:6379</project.redis.write.pool>-->
+                <project.redis.write.pool.maxIdle>10</project.redis.write.pool.maxIdle>
+                <project.redis.pool.testOnBorrow>true</project.redis.pool.testOnBorrow>
+
+                <!--azkaban -->
+                <project.azkaban.url>http://gpldata222:9001/</project.azkaban.url>
+                <project.azkaban.user>azkaban</project.azkaban.user>
+                <project.azkaban.password>azkaban</project.azkaban.password>
+                <project.azkaban.GDI_Project></project.azkaban.GDI_Project>
+                <project.azkaban.GDI_Workflow></project.azkaban.GDI_Workflow>
+                <project.azkaban.keystore.password>azkaban</project.azkaban.keystore.password>
+                <project.azkaban.keystore>
+                    /home/policy/work/tomcat8/webapps/jpas/WEB-INF/keystore/tomcat.keystore
+                </project.azkaban.keystore>
+                <project.azkaban.truststore>
+                    /home/policy/work/tomcat8/webapps/jpas/WEB-INF/keystore/tomcat.keystore
+                </project.azkaban.truststore>
+                <!-- ES配置 -->
+
+                <!-- ES路径 -->
+                <ES.url>http://gpldata222:9200</ES.url>
+                <ES.cluster>elasticsearch-cluster</ES.cluster>
+
+                <!-- HDFS配置 -->
+                <HDFS.url>hdfs://gpldata222:9000</HDFS.url>
+                <HDFS.baseurl>hdfs://gpldata222</HDFS.baseurl>
+                <HDFS.HADOOP_USER_NAME>hdfs</HDFS.HADOOP_USER_NAME>
+                <!-- 原始数据保存的HDFS路径 -->
+                <HDFS.orginal>/orginal</HDFS.orginal>
+                <!-- 质量正确的数据保存的HDFS集群路径 -->
+                <HDFS.dealed>/dealed</HDFS.dealed>
+                <!-- 质量错误的数据保存的HDFS集群路径 -->
+                <HDFS.error>/error</HDFS.error>
+
+                <!-- HIVE配置 -->
+                <HIVE.ThriftServer>jdbc:hive2://gpldata222:10000</HIVE.ThriftServer>
+
+                <!-- PRESTO配置 -->
+                <PRESTO.JDBC>jdbc:presto://gpldata222:9090</PRESTO.JDBC>
+
+                <!-- ES与DB同步配置 -->
+                <es.addr>gpldata222:9200</es.addr>
+                <data.super.dir>/home/policy/work/go-mysql-elasticsearch/datadir/</data.super.dir>
+                <stat.addr>gpldata222:12805</stat.addr>
+                <run.path>/home/policy/work/go-mysql-elasticsearch/bin/go-mysql-elasticsearch/</run.path>
+                <river.toml.path>/work/go-mysql-elasticsearch/etc/</river.toml.path>
+
+                <!-- Kfaka配置 -->
+                <bootstrap.servers>gpldata222:9092</bootstrap.servers>
+                <zookeeper.connect>gpldata222:2181</zookeeper.connect>
+                <orginal.topic>wanyou.orginal.topic</orginal.topic>
+                <orginal.group.id>wanyou.orginal.group</orginal.group.id>
+                <dealed.topic>wanyou.dealed.topic</dealed.topic>
+                <dealed.group.id>wanyou.dealed.group</dealed.group.id>
+
+                <project.user.md5.salt>Stay-hungry</project.user.md5.salt>
+                <!--<project.shiro.default.authc>authc</project.shiro.default.authc>-->
+                <project.shiro.default.authc>anon</project.shiro.default.authc>
+
+                <!--nutch 配置文件 -->
+                <project.nutch_config_path>/home/policy/work/nutch/{0}/config/</project.nutch_config_path>
+                <project.nutch_url_path>/home/policy/work/nutch/{0}/urls/</project.nutch_url_path>
+                <!--kettle 基本配置 -->
+                <project.kettle.basePath>/home/policy/work/data-integration/</project.kettle.basePath>
+                <project.kettle.level>Basic</project.kettle.level>
+                <project.kettle.mainjob>master</project.kettle.mainjob>
+                <project.kettle.kitchen>{0}kitchen.sh -level={1} -file={2}.kjb >> /home/policy/work/kettle/log/kettle_kitchen.log</project.kettle.kitchen>
+                <project.kettle.pan>{0}pan.sh -level={1} -file={2}.ktr >> /home/policy/work/kettle/log/kettle_pan.log</project.kettle.pan>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+
+    </profiles>
+</project>

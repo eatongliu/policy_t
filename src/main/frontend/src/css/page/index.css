@@ -1,0 +1,126 @@
+.search{
+	width: 100%;
+	height: 710px;
+	background: url(../../img/mask.png);
+	border-bottom: 2px solid #99e2fc;
+}
+.search_bg{
+	height: 100%;
+	background: url(../../img/banner_ditu.png)no-repeat center;
+}
+.search .search_logo{
+	font-size: 56px;
+	font-weight: bolder;
+	color: #fff;
+	text-align: center;
+	margin-top: 156px;
+	letter-spacing: 7px;
+}
+.search_btn label{
+	border: 1px solid #ccc;
+	padding: 0 12px 5px 0;
+	border-radius: 4px;
+	margin:10px;
+	color:#fff;
+	cursor: pointer;
+}
+.search_btn input{
+	opacity: 0;
+}
+.search .mg_top{
+	margin-top: 90px;
+}
+.search .search_ip{
+	width: 85%;
+	float: left;
+	border-radius: 4px 0px 0px 4px!important;
+	border-left: 0px;
+	height: 54px;
+	font-size: 16px;
+}
+.search .search_btns:focus{
+	background: #e72828;
+}
+.search .search_btns{
+	border-radius: 0px 4px 4px 0px!important;
+	height: 54px;
+	background-color: #e72828;
+	border:0px;
+	padding: 16px 30px;
+	color:#fff;
+	font-size: 16px;
+}
+.search .hot_word div,.search .hot_word a{
+	color:#fff;
+	font-size: 12px;
+}
+.search .hot_word a{
+	padding-left: 15px;
+}
+.search .hot_word .right{
+	width: 78%;
+}
+.search .hot_word .left{
+	width: 8%;
+	margin-left: 18px;
+}
+.blank{
+	width: 100%;
+	position: relative;
+	margin:50px 0 50px 0;
+	height: 170px;
+}
+.martop ol li{
+	background: #e72828;
+	border-color: #e72828;
+}
+.martop ol{
+	bottom: 0;
+}
+.martop ol .active{
+	background: #e72828;
+	border-color: #e72828;
+}
+.blank .search_link{
+	margin-top: -128px;
+
+}
+.blank .search_link div{
+	text-align: center;
+}
+.search_link div dl dt{
+	width: 148px;
+	padding-top: 50px;
+	height: 114px;
+	background: url(../../img/SY_lx02.png) no-repeat ;
+	margin: 0 auto;
+}
+.search_link div dl dt:hover{
+	background: url(../../img/SY_lx14.png) no-repeat;
+}
+.search_link div dl dd{
+	color: #000;
+}
+.bgk{
+	background: #f3f7f9;
+	height: 500px;
+}
+.t-r{
+	text-align: right;
+	padding-top: 160px;
+}
+.t-l{
+	text-align: left;
+	padding-top: 160px;
+}
+.fontSize{
+	font-size: 24px;
+	text-align: center;
+}
+.h3{
+	padding-top: 50px;
+}
+.h3 h3{
+	border-bottom: 1px solid #ccc;
+	height: 37px;
+ }

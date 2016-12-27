@@ -1,0 +1,74 @@
+一、首页
+1、第一张图：地图
+访问地址：/h/p1
+访问方式：get
+
+2、第二张图：横向柱状图
+访问地址：/h/p2
+访问方式：get
+
+3、第三张图：五边形
+访问地址：/h/p3
+访问方式：get
+
+
+二、个人中心
+1、对字符串进行分词，返回字符串数组：
+访问地址：/su/c
+访问方式：post
+访问参数：String subscriber
+
+2、保存订阅服务
+访问地址：/su/a
+访问方式：post
+访问参数：Subscriber subscriber(实体类，页面的两个参数)
+    /**
+     * 关键字（逗号分隔，拼为一个长String传回）
+     */
+    keyWords;
+    /**
+     * 用户备注
+     */
+    uRemark;
+	/**
+     * 用户原文
+     */
+    uContext;
+
+3、订阅列表
+访问地址：/su/ls/{offset}/{limit}
+访问方式：get
+访问参数：String keyWord（非必填，字段集）
+
+4、订阅删除
+访问地址：/su/d/{sid}
+访问方式：delete
+
+5、订阅政策列表（若未订阅，则为空）
+访问地址：/su/sp/{offset}/{limit}
+访问方式：get
+访问参数：
+    Integer sid(非必填，订阅号)
+    String title（非必填，政策文章）
+
+
+
+
+
+6、用户增加读书笔记
+访问地址：/su/sp/context
+访问方式：post
+访问参数：String context
+
+7、用户删除推送的文章
+访问地址：/su/sp/{pid}/{sid}
+访问方式：delete
+
+8、个人中心页面右下角推送文章列表（不会为空，若未订阅，显示默认）
+访问地址：/su/sp/n/{offset}/{limit}
+访问方式：get
+
+9、验证当前登录用户密码是否正确
+访问地址：/user/judgepwd
+访问方式：post
+访问参数：String password

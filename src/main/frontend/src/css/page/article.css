@@ -1,0 +1,116 @@
+.article{
+	padding-top: 10px;
+	margin-top: 5px;
+}
+p{
+	margin:0 0 10px;
+}
+.nav_top{
+	margin: 20px 0 20px 0;
+}
+.nav_top a{
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	padding: 2px 5px 2px 5px;
+	color: #f88f9c;
+	margin-left: 8px;
+}
+.article .title{
+	background: #fff;
+	padding-top: 10px;
+}
+.row{margin:0;}
+.article .title p span{
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	padding: 2px 7px 2px 7px;
+	margin-right: 12px;
+}
+.content{
+	margin-top: 26px;
+}
+.content .top{
+	padding: 0px 0 20px 0;
+}
+.top .font{
+	font-family: -webkit-pictograph;
+}
+.top .font a{
+	color: #ccc;
+	padding-right: 5px;
+}
+.content .top span{
+	margin-left: 20px;
+}
+.content .top span:nth-child(1){
+	background: url(../../img/YT_view.png)no-repeat left center;
+	padding-left: 20px;
+}
+.content .top span:nth-child(2){
+	background: url(../../img/YT_book-keep.png)no-repeat left center;
+	padding-left: 20px;
+}
+.content .top span:nth-child(4){
+	background: url(../../img/NRY_printer.png)no-repeat left center;
+	padding-left: 20px;
+}
+.content .top span:nth-child(5){
+	background: url(../../img/NRY_TP.png)no-repeat left center;
+	padding-left: 20px;
+}
+.bg{
+	padding-right:0;
+}
+.right_content{
+	padding-bottom: 34px;
+}
+.right_content .like{
+	font-size: 24px;
+	border-bottom: 1px solid #eee;
+	padding: 10px;
+}
+.right_content .pad{
+	margin: 0 10px;
+	border-bottom: 1px solid #f3f7f9;
+}
+.right_content .pad p{
+	margin: 0;
+}
+.right_content .pad p span:nth-child(2){
+	background: url(../../img/YT_view.png)no-repeat left center;
+	padding-left: 20px;
+}
+.right_content .pad p span:nth-child(3){
+	background: url(../../img/YT_book-keep.png)no-repeat left center;
+	padding-left: 20px;
+}
+.fenxiang{
+	padding-top: 24px;
+}
+.fenxiang ul li:nth-child(1){
+	background:url(../../img/Share.png) no-repeat left;
+	padding-left: 22px;
+	line-height: 40px;
+}
+.fenxiang ul li:nth-child(2){
+	width: 40px;
+	height: 40px;
+	background:url(../../img/aa1.png) no-repeat;
+	background-size: 100% 100%;
+}
+.fenxiang ul li:nth-child(3){
+	width: 40px;
+	height: 40px;
+	background:url(../../img/bo.png) no-repeat;
+	background-size: 100% 100%;
+}
+.fenxiang ul li:nth-child(4){
+	width: 40px;
+	height: 40px;
+	background:url(../../img/qq.png) no-repeat;
+	background-size: 100% 100%;
+}
+.fenxiang ul li{
+	float: left;
+	margin-right: 8px;
+}

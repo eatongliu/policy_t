@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx.xsd"
+>
+
+
+    <!-- <mvc:annotation-driven /> -->
+    <mvc:annotation-driven enable-matrix-variables="true" content-negotiation-manager="contentNegotiationManager"/>
+
+    <!-- springmvc传json值时的乱码解决 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 1. 包扫描 controller -->
+    <context:component-scan base-package="com.gpdata.wanyou.*.controller" use-default-filters="false">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <aop:aspectj-autoproxy/>
+
+    <!-- 静态资源映射 -->
+    <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/>
+    <mvc:resources mapping="/fonts/**" location="/fonts/" cache-period="31556926"/>
+    <mvc:resources mapping="/htmls/**" location="/htmls/" cache-period="31556926"/>
+    <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>
+    <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>
+    <mvc:resources mapping="/pictures/**" location="/pictures/" cache-period="31556926"/>
+    <mvc:resources mapping="/style/**" location="/style/" cache-period="31556926"/>
+    <mvc:resources mapping="/upload/**" location="/upload/" cache-period="31556926"/>
+    <mvc:resources mapping="/storeLogoUpload/**" location="/storeLogoUpload/" cache-period="31556926"/>
+
+    <mvc:default-servlet-handler/>
+
+    <!-- 2. 内部资源视图解析器 -->
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="order" value="1"/>
+    </bean>
+
+    <!-- 3. freeMarker视图解析器 -->
+    <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="contentType" value="text/html; charset=UTF-8"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="cache" value="true"/>
+        <property name="suffix" value=".htm"/>
+        <property name="order" value="0"/>
+    </bean>
+
+
+
+    <!-- 实现文件上传，这样一旦某个Request是一个MultipartRequest，它就会首先被MultipartResolver处理，然后再转发相应的Controller -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传文件的最大尺寸为1MB -->
+        <property name="maxUploadSize">
+            <value>1048576</value>
+        </property>
+    </bean>
+
+
+    <!-- 配置内容协商视图解析 -->
+    <bean id="contentNegotiatingViewResolver"
+          class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <!-- 设置内容协商管理器 -->
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+        <!-- 设置默认视图 -->
+        <property name="defaultViews">
+            <list>
+                <!-- <ref bean="mappingJacksonJsonView"/> -->
+            </list>
+        </property>
+        <!-- 设置视图解析器 -->
+        <property name="viewResolvers">
+            <list>
+                <ref bean="viewResolverFtl"/>
+                <ref bean="jspViewResolver"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Freemarker配置 -->
+    <bean id="freemarkerConfig"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/pages/"/>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml_escape" value-ref="fmXmlEscape" />
+            </map>
+        </property>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">0</prop>
+                <prop key="locale">zh_CN</prop>
+                <prop key="default_encoding">UTF-8</prop>
+                <prop key="number_format">0.##########</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="number_format">#.##</prop>
+                <prop key="classic_compatible">true</prop>
+                <prop key="template_exception_handler">ignore</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+
+
+    <!-- JSON视图 -->
+    <!--
+    <bean id="mappingJacksonJsonView"
+          class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+    -->
+
+    <bean id="contentNegotiationManager"
+          class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes">
+            <props>
+                <prop key="json">application/json</prop>
+                <prop key="xml">application/xml</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

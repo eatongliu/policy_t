@@ -1,0 +1,47 @@
+.head-nav{
+	background: #f8f8f8;
+	height: 40px;
+}
+ul{
+	margin-bottom: 0;
+	padding-left: 0;
+}
+.head-nav ul li{
+	float: left;
+	line-height: 40px;
+	list-style: none;
+	background: url(../../img/icon_daoxiang.png)no-repeat right center;
+	padding: 0px 20px 0 20px;
+}
+.user {
+	margin-top: 25px;
+}
+.user ul{
+	width: 180px;
+	margin-right: 24px;
+}
+.user .tab-content,.user ul{
+	float: left;
+}
+.user ul li{
+	list-style: none;
+	background: #f8f8f8;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+	font-size: 16px;
+	width: 180px;
+}
+.user ul li a:hover,.user ul li a{
+	border: 0!important;
+}
+.tab_one{
+	width: 936px;
+}
+.tab_one img{
+	width: 100%;
+}
+.user .nav .active{
+	background:url(../../img/tiao.png)no-repeat;
+	padding-left: 4px;
+}

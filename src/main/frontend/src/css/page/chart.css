@@ -1,0 +1,27 @@
+.search_ip{
+	width: 75%;
+	float: left;
+	border-radius: 4px 0px 0px 4px!important;
+}
+.search_btns{
+	border-radius: 0px 4px 4px 0px!important;
+	background-color: red;
+	border:0px;
+	color:#fff;
+	height: 34px;
+}
+.tishi{
+	padding: 8px 0 0 94px
+}
+.padl{
+	line-height: 33px;
+	padding-right: 10px;
+	font-size: 18px;
+}
+.padding{
+	padding-top: 60px;
+	color: #515151;
+}
+.wh{
+	height: 200px;
+}

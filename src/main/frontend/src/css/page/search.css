@@ -1,0 +1,126 @@
+.fice a{
+	padding: 8px 14px;
+	background: #ccc;
+	color: #fff;
+	font-weight: bolder;
+	float: left;
+}
+.fice div:nth-child(2){
+	line-height: 32px;
+	float: left;
+}
+.choose .picture .boxshaw{
+	padding-left: 0;
+	padding-top: 15px;
+}
+.bor-box canvas{
+	cursor: pointer;
+}
+.choose .picture .boxshaw .bor-box{
+	border: 1px solid #ccc;
+	padding: 5px;
+	border-radius: 4px;
+}
+.choose .bor-box p a{
+	display: inline-block;
+}
+.choose .bor-box .one_a{
+	background: url(../../img/YT_time.png)no-repeat left center;
+	padding-left: 20px;
+	vertical-align: middle;
+}
+.choose .bor-box .two_a{
+	background: url(../../img/YT_book-keep.png)no-repeat left center;
+	padding-left: 20px;
+	vertical-align: middle;
+}
+.choose .bor-box .three_a{
+	background: url(../../img/YT_view.png)no-repeat left center;
+	padding-left: 20px;
+	vertical-align: middle;
+}
+.choose .bor-box .two_a,.choose .bor-box .three_a{
+	float: right;
+}
+.choose .bor-box .three_a{
+	padding-right: 10px;
+}
+.choose .picture .boxshaw .bor-box:hover{
+	-webkit-box-shadow:0 0 10px #ebedef;
+	-moz-box-shadow:0 0 10px #ebedef;
+	box-shadow:0 0 10px #ebedef;
+	transition: all 0.5s;
+}
+.head_top .col-lg-12{
+	padding-top: 20px;
+}
+.head_top .radio-inline input{
+	vertical-align: top;
+	margin-right: 7px;
+}
+.choose .head_top .top .xunhuan{
+	margin:0 0 0 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 5px 10px 5px 10px;
+}
+.choose .head_top .top .line-h{
+	line-height: 26px;
+	font-size: 16px;
+}
+.c-label{
+	font-size: 16px;
+	padding-left: 0;
+	font-weight: normal;
+	line-height: 29px;
+	margin-right: 10px;
+}
+.choose .head_top .top div{
+	float: left;
+}
+.choose .head_top .top .add{
+	float: right;
+}
+.choose .head_top .top .add input,.choose .head_top .top .add button{
+	float: left;
+}
+.search_ip{
+	border-radius: 4px 0px 0px 4px!important;
+	float: left;
+	width: 85%;
+}
+.search_btns{
+	width: 40px;
+	height: 34px;
+	border-radius: 0px 4px 4px 0px!important;
+	background: url(../../img/icon_fangdajing.png)no-repeat center red;
+	background-size: 20px 20px;
+}
+.time select{
+	padding:6px 12px;
+}
+.bottom label input,.fice label input {
+    	opacity: 0;
+    	position: absolute;
+	}
+.bottom label span, .fice label span{
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background: url("../../img/WZ_yuan02.png")no-repeat;
+    margin-bottom: -2px;
+    margin-right: 5px;
+}
+.bottom label input:checked + span ,.fice label input:checked + span{
+    background: url("../../img/WZ_yuan01.png");
+}
+.marr .row .ant-select{
+	margin-right: 8px;
+}
+.time .ant-calendar-picker{
+	width: 125px;
+	padding-left: 5px;
+}
+.time .ant-calendar-picker .ant-input{
+	height: 32px;
+}

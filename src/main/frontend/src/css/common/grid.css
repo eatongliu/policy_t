@@ -1,0 +1,30 @@
+/*布局*/
+.g-hd{
+	height: 50px;
+	box-shadow: 0px 1px 10px #888888;
+}
+.g-bd{
+	min-height: auto;
+}
+.g-bd .page-header{
+	padding-bottom: 0;
+	margin: 24px 0 20px;
+	border-bottom: 1px solid #ccc;
+	position: relative;
+}
+.g-bd .page-header span{
+	height: 3px;
+	width: 119px;
+	background: #e72828;
+	position: absolute;
+	bottom: -1px;
+}
+.g-bd .page-header h2{
+	color: #e72828;
+	font-weight: bolder;
+	padding-bottom: 8px;
+}
+.g-ft{
+	height: 200px;
+	margin-top: 100px;
+}

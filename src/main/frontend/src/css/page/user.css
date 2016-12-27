@@ -1,0 +1,113 @@
+.head-nav{
+	background: #f8f8f8;
+	height: 40px;
+}
+ul{
+	margin-bottom: 0;
+	padding-left: 0;
+}
+.head-nav ul li{
+	float: left;
+	line-height: 40px;
+	list-style: none;
+	background: url(../../img/icon_daoxiang.png)no-repeat right center;
+	padding: 0px 20px 0 20px;
+}
+.user {
+	margin-top: 25px;
+}
+.user .col-lg-2{
+	border-right: 1px solid #ccc;
+}
+.user .panel-heading{
+	background-color:#fff;
+	text-align: center;
+}
+.user .panel-body{
+	border-top: 0px!important;
+	padding:0;
+}
+.user .panel-body p{
+	text-align: center;
+	line-height: 24px;
+}
+
+.user .panel-body p:focus{
+	color: green;
+}
+.user .panel{
+	border: 0px!important;
+	box-shadow:none!important;
+	-webkit-box-shadow:none!important;
+}
+.user .panel .panel-heading{
+	display: inline-block;
+	padding-left: 35px;
+	font-size: 18px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-decoration: none;
+	margin-left: 20px;
+}
+.user .panel:nth-child(1) .panel-heading{
+	background: url(../../img/icon_zhanghaoguanli.png)no-repeat left center;
+	background-size: 28px 28px;
+}
+.user .panel:nth-child(2) .panel-heading{
+	background: url(../../img/icon_fuwuguanli.png)no-repeat left center;
+	background-size: 28px 28px;
+}
+.user .panel:nth-child(3) .panel-heading{
+	background: url(../../img/icon_shufangguanli .png)no-repeat left center;
+	background-size: 28px 28px;
+}
+
+.user .c555{
+	color: #555;
+}
+.user .active{
+	color: #e72828;
+}
+.user .userLogo{
+	background-image: url(../../img/icon_shufangguanli .png);
+}
+.user h2{
+	margin-top: 0;
+	margin-bottom: 40px;
+}
+.user .userinfo{
+	line-height: 34px;
+}
+.pat{
+	padding-top: 15px;
+}
+.user2 .padd{
+	float: left;
+	margin-top: 8px;
+	margin-left: 35px;
+}
+.user2 .nav-tabs{
+	border-bottom: 0;
+}
+.user2 .nav-tabs li a{
+	color:#555555;
+	background: #fff!important;
+}
+.user2 .nav-tabs .active a{
+	color:blue!important;
+}
+.user2 .nav-tabs li a{
+	border: 0;
+}
+.user2 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+	border: 0;
+}
+.mart{
+	margin-top: 20px;
+}
+.bjt .panel-body p a{
+	padding-left: 15px;
+}
+.bjt .panel-body p .active{
+	background: url(../../img/icon_current location.png)no-repeat left center;
+}

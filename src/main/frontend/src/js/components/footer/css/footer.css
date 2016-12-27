@@ -1,0 +1,66 @@
+.foot{
+	width: 100%;
+	border-top: 1px solid #ccc;
+}
+.foot .bor_top{
+	height: 80px;
+	border-bottom: 1px solid #f8f8f8!important;
+}
+.foot .navbar-nav{
+	font-size: 18px;
+	padding-top:15px;
+}
+.foot .navbar-default{
+	background-color:#fff;
+	border-color:#fff;
+}
+.foot .navbar-brand{
+	padding: 26px 15px;
+}
+.foot .foot_me .navbar-header{
+	height: 80px;
+}
+.foot .navbar-default .navbar-toggle{
+	top: 16px;
+}
+.foot_top p{
+	font-size: 12px;
+	text-align: center;
+}
+
+.foot .right_nav li:nth-child(1){
+	background:url(../../../../img/aa.png) no-repeat;
+	background-size: 100% 100%;
+}
+.right_nav .btn-toolbar{
+	margin-left: 0px!important;
+}
+.foot .right_nav li:nth-child(1):hover{
+	background:url(../../../../img/aa1.png) no-repeat;
+	background-size: 100% 100%;
+}
+.foot .right_nav li .wh{
+	width: 40px;
+	height: 40px;
+}
+.foot .right_nav li:nth-child(2){
+	background:url(../../../../img/bb.png) no-repeat;
+	background-size: 100% 100%;
+}
+.foot .right_nav li:nth-child(2):hover{
+	background:url(../../../../img/bb1.png) no-repeat;
+	background-size: 100% 100%;
+}
+.foot .right_nav li:nth-child(3){
+	background:url(../../../../img/cc.png) no-repeat;
+	background-size: 100% 100%;
+}
+.foot .right_nav li:nth-child(3):hover{
+	background:url(../../../../img/cc1.png) no-repeat;
+	background-size: 100% 100%;
+}
+.foot .right_nav li{
+	width: 40px;
+	height: 40px;
+	margin-right: 15px;
+}

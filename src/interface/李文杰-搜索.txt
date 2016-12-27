@@ -1,0 +1,25 @@
+﻿/zt/s  主题分类   GET
+/bb/s  颁布机构/具体部门    GET
+/ad/p  获取省   GET
+/ad/c/{codeid}  获取市、县  传codeid   GET
+/ts/q  搜索  ({"index":"zcfg,zcwj,zcjd,", 必传  POST
+               "topicClassify":"税收",
+               "pubOrg":"颁布机构",
+               "placed":"具体单位",
+               "province":"省",
+               "city":"市",
+               "county":"县",
+               "startTime":"开始时间 2015",
+               "endTime":"截至时间",
+               "isEffect":"是否有效(0或1)",
+	       "isPilot":"是否试点(0或1)",
+               "isPub":"1",是否发布（1）必传
+               "isHide":"0"是否隐藏 (0) 必传
+               )}
+		str :用户输入关键字
+		offset  limit
+
+
+/list/q/{pdId}   获取单个政策信息 pdId    GET
+
+/relate/{pdId}  //正文下方的猜你喜欢和相关政策 get
